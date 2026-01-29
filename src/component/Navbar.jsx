@@ -14,7 +14,7 @@ const Navbar = () => {
   return (
    <>
     <div className='w-full h-20 bg-[#010101] text-white flex justify-between items-center px-6'>
-      <Link to="home" className='flex  items-center gap-2'>
+      <Link to="/" className='flex  items-center gap-2'>
         <div className='w-10 h-10'>
         <img className='w-full h-full object-cover' src=" https://media.istockphoto.com/id/876895654/photo/white-silhouette-strenge-man-on-the-black-background.webp?a=1&b=1&s=612x612&w=0&k=20&c=hYME2EDTQhrqQuZ1LU0ydz2yVfWEsTXIPr3K6Yt_dhY=" alt="" />
       </div>
