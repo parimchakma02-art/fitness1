@@ -2,7 +2,7 @@ import React from "react";
 import { GoArrowUpRight } from "react-icons/go";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-
+import SplitText from "gsap/SplitText";
 
 
 const stats = [
@@ -31,28 +31,43 @@ const stats = [
 ];
 
 const About = () => {
-     useGSAP(() => {
-          gsap.to("#text", {
-            ease:"power2.inOut",
-            opacity:1,
-            y:0,      
-            
-          })
+   useGSAP(() => {
+    // Split heading into characters
+    const charSplit = new SplitText(".split", {
+      type: "chars",
+    });
 
-          gsap.fromTo(".para", {
-            opacity:0,
-            y:20,
+    // Split paragraph into words
+    const wordSplit = new SplitText(".words", {
+      type: "words",
+    });
 
-          },{
-            opacity:1,
-            y:0,
-            delay:0.4,
-            stagger:0.1,
-            
-          })
-      }, [])
+    // Paragraph animation
+    gsap.from(wordSplit.words, {
+      y: 40,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.05,
+      ease: "power2.out",
+    });
+
+    // Heading animation
+    gsap.from(charSplit.chars, {
+      y: 100,
+      opacity: 0,
+      duration: 1.4,
+      stagger: 0.04,
+      ease: "power3.out",
+    });
+
+    // Cleanup
+    return () => {
+      charSplit.revert();
+      wordSplit.revert();
+    };
+  }, []);
   return (
-    <section className="bg-[#010101] w-full min-h-screen text-white ">
+    <section id="about" className="bg-[#010101]  w-full min-h-screen text-white ">
       {/* Stats */}
       <div className="px-8 pt-10 ">
         <div className="bg-[#201D1E] w-full h-46 rounded-2xl flex  items-center">
@@ -79,10 +94,10 @@ const About = () => {
 
 
         <div className="w-[55%] h-96 flex flex-col justify-center px-4 space-y-4 para">
-          <div className="text-[#94F608] italic  text-[30px] para">About Us</div>
-          <div className="text-[46px] leading-14">Supporting Your Journey To <br />
+          <div className="text-[#94F608] italic  text-[30px] font-light split">About Us</div>
+          <div className="text-[46px] leading-14 split">Supporting Your Journey To <br />
             Better Movement</div>
-          <div className="text-[#808080]">We are a team of certified fitness trainers, nutritionists, and wellness <br />
+          <div className="text-[#808080] words">We are a team of certified fitness trainers, nutritionists, and wellness <br />
             professionals committed to guiding your journey with evidence-based,
             personalized coaching.</div>
 

@@ -1,1 +1,20 @@
 @import "tailwindcss";
+
+
+
+
+html {
+    scroll-behavior: smooth;
+}
+.gradient-border {
+  background: linear-gradient(to right, white, #AAF72D);
+  border-radius: 1px; /* slightly rounded edges */
+  transition: background 0.3s ease;
+}
+
+.gradient-border:hover {
+  background: linear-gradient(to right, #ccc, #91f62d);
+}
+
+
+

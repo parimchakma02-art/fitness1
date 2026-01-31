@@ -5,16 +5,16 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
 
  const navitems = [
-  { label: "Home", path: "home" },
-  { label: "About", path: "about" },
-  { label: "Service" , path: "service"},
-  { label:"Blogs", path:"blog" },
-  { label: "Programs", path: "program" }
+  { label: "Home", path: "#home" },
+  { label: "About", path: "#about" },
+  { label: "Service" , path: "#service"},
+  { label:"Blogs", path:"#blog" },
+  { label: "Programs", path: "#program" }
 ];
   return (
    <>
     <div className='w-full h-20 bg-[#010101] text-white flex justify-between items-center px-6'>
-      <Link to="/" className='flex  items-center gap-2'>
+      <Link  className='flex  items-center gap-2'>
         <div className='w-10 h-10'>
         <img className='w-full h-full object-cover' src=" https://media.istockphoto.com/id/876895654/photo/white-silhouette-strenge-man-on-the-black-background.webp?a=1&b=1&s=612x612&w=0&k=20&c=hYME2EDTQhrqQuZ1LU0ydz2yVfWEsTXIPr3K6Yt_dhY=" alt="" />
       </div>
@@ -24,7 +24,7 @@ const Navbar = () => {
       </Link>
       <div  className='flex gap-6'>
         { navitems.map((i, index) => (
-          <Link key={index} to={i.path} className="
+          <a key={index} href={i.path}  className="
             relative cursor-pointer
             hover:text-[#AAF72D]
               hover:font-medium
@@ -36,7 +36,7 @@ const Navbar = () => {
             after:scale-x-0 after:origin-right
             after:transition-transform after:duration-300 after:ease-out
             hover:after:scale-x-100 hover:after:origin-left
-          "> {i.label} </Link>
+          "> {i.label} </a>
 
         ))}
         

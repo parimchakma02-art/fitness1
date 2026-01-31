@@ -7,27 +7,45 @@ import SplitText from "gsap/SplitText";
 
 gsap.registerPlugin(SplitText);
 
-const Home = () => {
-  useGSAP(() => {
-    const split = new SplitText(".split", {
-      type: "words, chars",
+
+const Hero = () => {
+useGSAP(() => {
+    // Split heading into characters
+    const charSplit = new SplitText(".split", {
+      type: "chars",
     });
 
-    gsap.from(split.chars, {
-      y: 100,
+    // Split paragraph into words
+    const wordSplit = new SplitText(".words", {
+      type: "words",
+    });
+
+    // Paragraph animation
+    gsap.from(wordSplit.words, {
+      y: 40,
       opacity: 0,
       duration: 1,
       stagger: 0.05,
-      ease: "power4.out",
+      ease: "power2.out",
     });
 
-    return () => {
-      split.revert(); // cleanup
-    };
-  });
+    // Heading animation
+    gsap.from(charSplit.chars, {
+      y: 100,
+      opacity: 0,
+      duration: 1.4,
+      stagger: 0.04,
+      ease: "power3.out",
+    });
 
+    // Cleanup
+    return () => {
+      charSplit.revert();
+      wordSplit.revert();
+    };
+  }, []);
   return (
-    <section className="relative h-screen w-full">
+    <section id="hero" className="relative h-screen w-full">
       {/* Background image */}
       <img
         className="absolute inset-0 h-full w-full object-cover"
@@ -42,7 +60,7 @@ const Home = () => {
           <h1 className="split">startsn<span>0</span>w</h1>
         </div>
 
-        <p className="max-w-[50vw] text-[20px] split">
+        <p className="max-w-[50vw] text-[20px] words">
           We provide state-of-the-art facilities, top-notch trainers, and fun
           classes that keep you energized every day. Start your fitness journey
           with us now!
@@ -66,4 +84,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Hero;
